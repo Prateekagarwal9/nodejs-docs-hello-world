@@ -1,7 +1,10 @@
 const http = require('http');
-function function2() {
-    // all the stuff you want to happen after that pause
-    console.log('Testing');
+function sleep(time, callback) {
+    var stop = new Date().getTime();
+    while(new Date().getTime() < stop + time) {
+        ;
+    }
+    callback();
 }
 
 
@@ -12,6 +15,10 @@ const server = http.createServer((request, response) => {
 });
 
 const port = process.env.PORT || 1337;
+sleep(300000, function() {
+   // executes after one second, and blocks the thread
 server.listen(port);
+
+});
 
 console.log("Server running at http://localhost:%d", port);
